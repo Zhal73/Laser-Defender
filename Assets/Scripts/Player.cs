@@ -6,8 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //configuration parameters
+    [Header("Player")]
     [SerializeField] float moveSpeed = 10f; //this variable let us set the game speed
     [SerializeField] float padding = 0.5f; //to avoid the Sprite going half out of the screen
+    [SerializeField] int health = 200;
+
+    [Header("Projectile")]
     [SerializeField] GameObject playerLaser;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileFiringPeriod = 0.05f;
@@ -115,5 +119,26 @@ public class Player : MonoBehaviour
 
         yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
         yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
+    }
+
+    /*
+     * helper method that reduces the health of a gameobject
+     * when a collision is detected.
+     * When the health is less or equal than zero
+     * it destroys the object
+     */
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        ProcessHit(damageDealer);
+    }
+
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
