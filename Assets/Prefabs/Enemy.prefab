@@ -106,13 +106,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451d716630566e54ab6a64254eb57d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 500
   shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
   enemyLaser: {fileID: 5825990461383407342, guid: f415766247d90014a97328363e90da4c,
     type: 3}
   enemyLaserSpeed: 10
+  enemyExplosion: {fileID: 4520656041143979281, guid: e5442736653bb134abad9e2fb8f85e94,
+    type: 3}
+  durationOfExplosion: 1
 --- !u!60 &-2606790472541432503
 PolygonCollider2D:
   m_ObjectHideFlags: 0
